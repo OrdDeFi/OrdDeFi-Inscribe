@@ -82,10 +82,7 @@ impl Send {
       }
     };
 
-    let change = [
-      get_change_address(&client, chain)?,
-      get_change_address(&client, chain)?,
-    ];
+    let change = get_change_address(&client, chain)?;
 
     let postage = if let Some(postage) = self.postage {
       Target::ExactPostage(postage)
