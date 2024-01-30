@@ -147,7 +147,7 @@ static SHUTTING_DOWN: AtomicBool = AtomicBool::new(false);
 static LISTENERS: Mutex<Vec<axum_server::Handle>> = Mutex::new(Vec::new());
 static INDEXER: Mutex<Option<thread::JoinHandle<()>>> = Mutex::new(Option::None);
 
-const TARGET_POSTAGE: Amount = Amount::from_sat(10_000);
+const TARGET_POSTAGE: Amount = Amount::from_sat(546);
 
 #[allow(clippy::cast_possible_truncation, clippy::cast_sign_loss)]
 fn fund_raw_transaction(
