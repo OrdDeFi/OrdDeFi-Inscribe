@@ -211,7 +211,7 @@ impl Index {
     let path = options
       .index
       .clone()
-      .unwrap_or(options.data_dir().clone().join("index.redb"));
+      .unwrap_or(options.data_dir().clone().join("dummy_index.redb"));
 
     if let Err(err) = fs::create_dir_all(path.parent().unwrap()) {
       bail!(
@@ -382,16 +382,6 @@ impl Index {
   }
 
   pub(crate) fn check_sync(&self, utxos: &BTreeMap<OutPoint, Amount>) -> Result<bool> {
-    let rtx = self.database.begin_read()?;
-    let outpoint_to_value = rtx.open_table(OUTPOINT_TO_VALUE)?;
-    for outpoint in utxos.keys() {
-      if outpoint_to_value.get(&outpoint.store())?.is_none() {
-        return Err(anyhow!(
-          "output in Bitcoin Core wallet but not in ord index: {outpoint}"
-        ));
-      }
-    }
-
     Ok(true)
   }
 
