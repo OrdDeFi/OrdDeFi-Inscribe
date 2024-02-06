@@ -3,6 +3,7 @@ use super::*;
 pub(super) struct Batch {
   pub(super) commit_fee_rate: FeeRate,
   pub(super) destinations: Vec<Address>,
+  pub(super) changes: Vec<Address>,
   pub(super) dry_run: bool,
   pub(super) inscriptions: Vec<Inscription>,
   pub(super) mode: Mode,
@@ -20,6 +21,7 @@ impl Default for Batch {
     Batch {
       commit_fee_rate: 1.0.try_into().unwrap(),
       destinations: Vec::new(),
+      changes: Vec::new(),
       dry_run: false,
       inscriptions: Vec::new(),
       mode: Mode::SharedOutput,
@@ -46,7 +48,7 @@ impl Batch {
   ) -> SubcommandResult {
     let wallet_inscriptions: BTreeMap<SatPoint, InscriptionId> = BTreeMap::new();
 
-    let commit_tx_change = &self.destinations[0];
+    let change = &self.changes[0];
 
     let (commit_tx, reveal_tx, recovery_key_pair, total_fees) = self
       .create_batch_inscription_transactions(
@@ -55,7 +57,7 @@ impl Batch {
         locked_utxos.clone(),
         runic_utxos,
         utxos.clone(),
-        commit_tx_change.clone(),
+        change.clone(),
       )?;
 
     // if self.dry_run {

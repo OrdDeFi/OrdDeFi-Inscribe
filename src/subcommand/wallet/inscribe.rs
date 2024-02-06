@@ -69,8 +69,10 @@ pub(crate) struct Inscribe {
   pub(crate) commit_fee_rate: Option<FeeRate>,
   #[arg(long, help = "Compress inscription content with brotli.")]
   pub(crate) compress: bool,
-  #[arg(long, help = "Send inscription to <DESTINATION>.")]
+  #[arg(long, help = "Send instruction to <DESTINATION>.")]
   pub(crate) destination: Option<Address<NetworkUnchecked>>,
+  #[arg(long, help = "Send change to <CHANGE>.")]
+  pub(crate) change: Option<Address<NetworkUnchecked>>,
   #[arg(long, help = "Don't sign or broadcast transactions.")]
   pub(crate) dry_run: bool,
   #[arg(long, help = "Use fee rate of <FEE_RATE> sats/vB.")]
@@ -126,10 +128,16 @@ impl Inscribe {
 
     let postage;
     let destinations;
+    let changes;
     let inscriptions;
     let mode;
     let parent_info;
     let sat;
+
+    changes = vec![match self.change.clone() {
+      Some(change) => change.require_network(chain.network())?,
+      None => get_change_address(&client, chain)?,
+    }];
 
     match (self.file, self.batch) {
       (Some(file), None) => {
@@ -203,6 +211,7 @@ impl Inscribe {
     Batch {
       commit_fee_rate: self.commit_fee_rate.unwrap_or(self.fee_rate),
       destinations,
+      changes,
       dry_run: self.dry_run,
       inscriptions,
       mode,
