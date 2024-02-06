@@ -1,12 +1,12 @@
 [package]
-name = "ord"
-description = "◉ Ordinal wallet and block explorer"
-version = "0.14.1"
+name = "OrdDeFi-Inscribe"
+description = "Instruction inscriber for OrdDeFi"
+version = "0.14.2"
 license = "CC0-1.0"
 edition = "2021"
 autotests = false
-homepage = "https://github.com/ordinals/ord"
-repository = "https://github.com/ordinals/ord"
+homepage = "https://github.com/OrdDeFi/OrdDeFi-Inscribe"
+repository = "https://github.com/OrdDeFi/OrdDeFi-Inscribe"
 autobins = false
 rust-version = "1.67"
 
@@ -79,7 +79,7 @@ name = "server"
 harness = false
 
 [[bin]]
-name = "ord"
+name = "OrdDeFi-Inscribe"
 path = "src/bin/main.rs"
 
 [lib]

@@ -3,6 +3,66 @@
 version = 3
 
 [[package]]
+name = "OrdDeFi-Inscribe"
+version = "0.14.2"
+dependencies = [
+ "anyhow",
+ "async-trait",
+ "axum",
+ "axum-server",
+ "base64 0.21.5",
+ "bech32",
+ "bip39",
+ "bitcoin",
+ "boilerplate",
+ "brotli",
+ "chrono",
+ "ciborium",
+ "clap",
+ "criterion",
+ "ctrlc",
+ "derive_more",
+ "dirs",
+ "env_logger",
+ "executable-path",
+ "futures",
+ "hex",
+ "html-escaper",
+ "http 0.2.11",
+ "humantime",
+ "hyper",
+ "indicatif",
+ "lazy_static",
+ "log",
+ "mime",
+ "mime_guess",
+ "miniscript",
+ "mp4",
+ "ord-bitcoincore-rpc",
+ "pretty_assertions",
+ "pulldown-cmark",
+ "redb",
+ "regex",
+ "reqwest",
+ "rss",
+ "rust-embed",
+ "rustls 0.22.1",
+ "rustls-acme",
+ "serde",
+ "serde_json",
+ "serde_yaml",
+ "sha3",
+ "sysinfo",
+ "tempfile",
+ "test-bitcoincore-rpc",
+ "tokio",
+ "tokio-stream",
+ "tokio-util 0.7.10",
+ "tower-http",
+ "unindent",
+]
+
+[[package]]
 name = "addr2line"
 version = "0.21.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2145,66 +2205,6 @@ name = "option-ext"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "04744f49eae99ab78e0d5c0b603ab218f515ea8cfe5a456d7629ad883a3b6e7d"
-
-[[package]]
-name = "ord"
-version = "0.14.1"
-dependencies = [
- "anyhow",
- "async-trait",
- "axum",
- "axum-server",
- "base64 0.21.5",
- "bech32",
- "bip39",
- "bitcoin",
- "boilerplate",
- "brotli",
- "chrono",
- "ciborium",
- "clap",
- "criterion",
- "ctrlc",
- "derive_more",
- "dirs",
- "env_logger",
- "executable-path",
- "futures",
- "hex",
- "html-escaper",
- "http 0.2.11",
- "humantime",
- "hyper",
- "indicatif",
- "lazy_static",
- "log",
- "mime",
- "mime_guess",
- "miniscript",
- "mp4",
- "ord-bitcoincore-rpc",
- "pretty_assertions",
- "pulldown-cmark",
- "redb",
- "regex",
- "reqwest",
- "rss",
- "rust-embed",
- "rustls 0.22.1",
- "rustls-acme",
- "serde",
- "serde_json",
- "serde_yaml",
- "sha3",
- "sysinfo",
- "tempfile",
- "test-bitcoincore-rpc",
- "tokio",
- "tokio-stream",
- "tokio-util 0.7.10",
- "tower-http",
- "unindent",
-]
 
 [[package]]
 name = "ord-bitcoincore-rpc"
