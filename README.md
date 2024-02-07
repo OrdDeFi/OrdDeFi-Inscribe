@@ -55,5 +55,10 @@ OrdDeFi-Inscribe wallet --name [wallet_name] inscribe [--dry-run] --fee-rate [fe
 e.g.:  
 
 ```
-OrdDeFi-Inscribe wallet --name orddefi inscribe --dry-run --fee-rate 36 --destination bc1pm8wv7dwnzs5dd6fhgdnurhhpat0zzgly6yugtr472nqhlxatlhdsq6t3ku --change bc1pm8wv7dwnzs5dd6fhgdnurhhpat0zzgly6yugtr472nqhlxatlhdsq6t3ku --file ~/inscription_demo/odfi_addlp.txt
+OrdDeFi-Inscribe wallet --name orddefi inscribe --dry-run --fee-rate 36 --destination bc1pm8wv7dwnzs5dd6fhgdnurhhpat0zzgly6yugtr472nqhlxatlhdsq6t3ku --change bc1pm8wv7dwnzs5dd6fhgdnurhhpat0zzgly6yugtr472nqhlxatlhdsq6t3ku --file ~/inscription_demo/insc.txt
 ```
+
+Instruction Examples
+-----
+
+See the [instruction_demo](https://github.com/OrdDeFi/OrdDeFi-Inscribe/tree/main/instruction_demo) files.

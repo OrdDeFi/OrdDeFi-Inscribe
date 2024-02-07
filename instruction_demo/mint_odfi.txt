@@ -1,0 +1,1 @@
+{"p":"orddefi","op":"mint","tick":"odfi","amt":"1000"}
