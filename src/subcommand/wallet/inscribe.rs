@@ -69,6 +69,8 @@ pub(crate) struct Inscribe {
   pub(crate) commit_fee_rate: Option<FeeRate>,
   #[arg(long, help = "Compress inscription content with brotli.")]
   pub(crate) compress: bool,
+  #[arg(long, help = "Send instruction from <ORIGIN>.")]
+  pub(crate) origin: Option<Address<NetworkUnchecked>>,
   #[arg(long, help = "Send instruction to <DESTINATION>.")]
   pub(crate) destination: Option<Address<NetworkUnchecked>>,
   #[arg(long, help = "Send change to <CHANGE>.")]
@@ -114,17 +116,14 @@ impl Inscribe {
     let metadata = Inscribe::parse_metadata(self.cbor_metadata, self.json_metadata)?;
 
     let index = Index::open(&options)?;
-    // index.update()?;
 
     let client = bitcoin_rpc_client_for_wallet_command(wallet, &options)?;
-
-    let utxos = get_unspent_outputs(&client, &index)?;
-
-    let locked_utxos = get_locked_outputs(&client)?;
-
-    let runic_utxos = BTreeSet::new();
-
     let chain = options.chain();
+
+    let origin: Option<Address> = self.origin.clone().and_then(|origin| origin.require_network(chain.network()).ok());
+    let utxos = get_unspent_outputs_with_address(&client, &index, &origin)?;
+    let locked_utxos = get_locked_outputs(&client)?;
+    let runic_utxos = BTreeSet::new();
 
     let postage;
     let destinations;

@@ -87,6 +87,14 @@ pub(crate) fn get_unspent_outputs(
   client: &Client,
   index: &Index,
 ) -> Result<BTreeMap<OutPoint, Amount>> {
+  return get_unspent_outputs_with_address(client, index, &None)
+}
+
+pub(crate) fn get_unspent_outputs_with_address(
+  client: &Client,
+  index: &Index,
+  address: &Option<Address>
+) -> Result<BTreeMap<OutPoint, Amount>> {
   let mut utxos = BTreeMap::new();
   utxos.extend(
     client
