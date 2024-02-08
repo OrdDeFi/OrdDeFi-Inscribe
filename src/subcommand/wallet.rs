@@ -93,12 +93,21 @@ pub(crate) fn get_unspent_outputs(
 pub(crate) fn get_unspent_outputs_with_address(
   client: &Client,
   index: &Index,
-  address: &Option<Address>
+  origin_address: &Option<Address>
 ) -> Result<BTreeMap<OutPoint, Amount>> {
+  let mut addr_slice_opt = None;
+  let address_clone;
+  let mut vec = Vec::new();
+  if let Some(address) = origin_address.as_ref() {
+    address_clone = address.clone();
+    vec.push(&address_clone);
+    addr_slice_opt = Some(&vec[..])
+  }
+
   let mut utxos = BTreeMap::new();
   utxos.extend(
     client
-      .list_unspent(None, None, None, None, None)?
+      .list_unspent(None, None, addr_slice_opt, None, None)?
       .into_iter()
       .map(|utxo| {
         let outpoint = OutPoint::new(utxo.txid, utxo.vout);
