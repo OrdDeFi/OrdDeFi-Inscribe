@@ -220,7 +220,7 @@ impl Batch {
       ),
     }
 
-    println!("change and inscription address: {:?}", change);
+    println!("change address: {:?}", change);
 
     let satpoint = if let Some(satpoint) = self.satpoint {
       satpoint
@@ -244,7 +244,7 @@ impl Batch {
         })
         .ok_or_else(|| anyhow!("wallet contains no cardinal utxos"))?
     };
-    println!("outpoint {}:{}", satpoint.outpoint.txid.to_string(), satpoint.outpoint.vout);
+    println!("using UTXO as outpoint {}:{}", satpoint.outpoint.txid.to_string(), satpoint.outpoint.vout);
 
     let secp256k1 = Secp256k1::new();
     let key_pair = UntweakedKeyPair::new(&secp256k1, &mut rand::thread_rng());
@@ -293,8 +293,8 @@ impl Batch {
         },
       })
       .collect::<Vec<TxOut>>();
-    println!("reveal_inputs {:?}", reveal_inputs);
-    println!("reveal_outputs {:?}", reveal_outputs);
+    // println!("reveal_inputs {:?}", reveal_inputs);
+    // println!("reveal_outputs {:?}", reveal_outputs);
 
     let commit_input = 0;
 

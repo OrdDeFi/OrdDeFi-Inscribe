@@ -121,6 +121,9 @@ impl Inscribe {
     let chain = options.chain();
 
     let origin: Option<Address> = self.origin.clone().and_then(|origin| origin.require_network(chain.network()).ok());
+    println!("origin address: {:?}", origin);
+    println!("destination address: {:?}", self.destination);
+
     let utxos = get_unspent_outputs_with_address(&client, &index, &origin)?;
     let locked_utxos = get_locked_outputs(&client)?;
     let runic_utxos = BTreeSet::new();
