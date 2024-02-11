@@ -27,7 +27,7 @@ impl Send {
 
     let index = Index::open(&options)?;
 
-    index.update()?;
+    // index.update()?;
 
     let client = bitcoin_rpc_client_for_wallet_command(wallet, &options)?;
 
