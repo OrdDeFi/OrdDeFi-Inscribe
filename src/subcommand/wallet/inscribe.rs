@@ -124,7 +124,7 @@ impl Inscribe {
     println!("origin address: {:?}", origin);
     println!("destination address: {:?}", self.destination);
 
-    let utxos = get_unspent_outputs_with_address(&client, &index, &origin)?;
+    let utxos = get_unspent_outputs_with_address(&client, &index, &origin, 1000)?;
     let locked_utxos = get_locked_outputs(&client)?;
     let runic_utxos = BTreeSet::new();
 
