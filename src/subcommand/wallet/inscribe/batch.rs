@@ -112,9 +112,9 @@ impl Batch {
     println!("Signed raw reveal transaction:");
     println!("{reveal_hex_string}");
 
-    // if !self.no_backup {
-    //   Self::backup_recovery_key(client, recovery_key_pair, chain.network())?;
-    // }
+    if !self.no_backup {
+      Self::backup_recovery_key(client, recovery_key_pair, chain.network())?;
+    }
 
     let mut commit = Txid::all_zeros();
     let mut reveal = Txid::all_zeros();
