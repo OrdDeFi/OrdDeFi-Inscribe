@@ -13,8 +13,10 @@ use {
   miniscript::descriptor::{Descriptor, DescriptorSecretKey, DescriptorXKey, Wildcard},
   transaction_builder::TransactionBuilder,
 };
+use crate::subcommand::wallet::commit_gen_prv::CommitGenPrv;
 
 pub mod balance;
+pub mod commit_gen_prv;
 pub mod cardinals;
 pub mod create;
 pub mod etch;
@@ -40,6 +42,8 @@ pub(crate) struct Wallet {
 pub(crate) enum Subcommand {
   #[command(about = "Get wallet balance")]
   Balance,
+  #[command(about = "Commit generate xprv")]
+  CommitGenPrv(commit_gen_prv::CommitGenPrv),
   #[command(about = "Create new wallet")]
   Create(create::Create),
   #[command(about = "Create rune")]
@@ -68,6 +72,7 @@ impl Wallet {
   pub(crate) fn run(self, options: Options) -> SubcommandResult {
     match self.subcommand {
       Subcommand::Balance => balance::run(self.name, options),
+      Subcommand::CommitGenPrv(..) => CommitGenPrv::run(),
       Subcommand::Create(create) => create.run(self.name, options),
       Subcommand::Etch(etch) => etch.run(self.name, options),
       Subcommand::Inscribe(inscribe) => inscribe.run(self.name, options),
