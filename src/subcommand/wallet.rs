@@ -76,7 +76,7 @@ impl Wallet {
   pub(crate) fn run(self, options: Options) -> SubcommandResult {
     match self.subcommand {
       Subcommand::Balance => balance::run(self.name, options),
-      Subcommand::CommitGenAddr(commitGenAddr) => commitGenAddr.run(),
+      Subcommand::CommitGenAddr(commitGenAddr) => commitGenAddr.run(options),
       Subcommand::CommitGenPrv(..) => CommitGenPrv::run(),
       Subcommand::Create(create) => create.run(self.name, options),
       Subcommand::Etch(etch) => etch.run(self.name, options),
