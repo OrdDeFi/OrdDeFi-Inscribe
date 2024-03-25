@@ -31,6 +31,7 @@ pub mod sats;
 pub mod send;
 pub mod transaction_builder;
 pub mod transactions;
+mod commit_direct_inscribe;
 
 #[derive(Debug, Parser)]
 pub(crate) struct Wallet {
